@@ -61,9 +61,8 @@ class Rock(BaseGameFigure):
     def __gt__(self, other):
         if not isinstance(other, BaseGameFigure):
             raise TypeError
-        if type(other) == Scissors:
-            if type(other) == Lizard:
-             return True
+        if type(other) == Scissors or type(other) == Lizard:
+            return True
         else:
             return False
 
@@ -74,9 +73,8 @@ class Scissors(BaseGameFigure):
     def __gt__(self, other):
         if not isinstance(other, BaseGameFigure):
             raise TypeError
-        if type(other) == Paper:
-            if type(other)== Lizard:
-             return True
+        if type(other) == Paper or type(other) == Lizard:
+            return True
         else:
             return False
 
@@ -88,33 +86,32 @@ class Paper(BaseGameFigure):
     def __gt__(self, other):
         if not isinstance(other, BaseGameFigure):
             raise TypeError
-        if type(other) == Rock:
-            if type(other) == Spock:
-             return True
+        if type(other) == Rock or type(other) == Spock:
+            return True
         else:
             return False
-class Lizard(BaseGameFigure):
 
+
+class Lizard(BaseGameFigure):
     name = 'Lizard'
 
     def __gt__(self, other):
         if not isinstance(other, BaseGameFigure):
             raise TypeError
-        if type(other) == Spock:
-            if type(other) == Paper:
-             return True
+        if type(other) == Spock or type(other) == Paper:
+            return True
         else:
             return False
-class Spock(BaseGameFigure):
 
+
+class Spock(BaseGameFigure):
     name = 'Spock'
 
     def __gt__(self, other):
         if not isinstance(other, BaseGameFigure):
             raise TypeError
-        if type(other) == Scissors:
-            if type(other) == Rock:
-             return True
+        if type(other) == Scissors or type(other) == Rock:
+            return True
         else:
             return False
 
@@ -123,7 +120,7 @@ class RSPGame:
     game_name = 'Rock Scissors Paper Lizard Spock'
     player1 = None
     player2 = None
-    rules = [Scissors(), Paper(), Rock(), Lizard(), Spock()]
+    rules = [Scissors(), Paper(), Rock(), Lizard(), Spock()]  # Додано нові фігури
 
     def __init__(self, player1, player2):
         self.player1 = player1
@@ -140,9 +137,9 @@ class RSPGame:
         if f1 == f2:
             print('Draw')
         elif f1 > f2:
-            print('player Dmitro win with Alex', f1.name)
+            print(f'Player {self.player1.name} wins with {f1.name}')
         else:
-            print('player Alex win with Dmitro', f2.name)
+            print(f'Player {self.player2.name} wins with {f2.name}')
 
     def play_3_times(self):
         print(f'{self.game_name} started for 3 time play')
@@ -156,4 +153,3 @@ human_player1 = HumanPlayer()
 game = RSPGame(ai_player1, human_player1)
 
 game.play()
-
